@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: hph
+  name: backend-sit-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend-container-02
+          image: quachuoiscontainer/hph_be:tag03
+          ports:
+            - containerPort: 8888
+          resources:
+            limits: 
+              cpu: "1"           # Limit to 1 CPU
+              memory: "512Mi"    # Limit to 512 MiB of memory
+            requests:
+              cpu: "0.5"         # Request 0.5 CPU
+              memory: "256Mi"    # Request 256 MiB of memory

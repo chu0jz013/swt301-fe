@@ -1,0 +1,16 @@
+version: '3'
+services:
+  frontend:
+    image: quachuoiscontainer/hph_fe:tag01
+    ports:
+      - "80:80"
+  database:
+    image: quachuoiscontainer/hph_db:latest
+    ports:
+      - "3306:3306"
+  backend:
+    image: quachuoiscontainer/hph_be:tag02
+    ports:
+      - "8888:8888"
+    depends_on:
+      - database
