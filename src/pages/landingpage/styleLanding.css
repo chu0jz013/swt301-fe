@@ -1,0 +1,16 @@
+/* Adding style from here */
+.btn-orange {
+  background-color: #f36f21;
+  color: white;
+  font-size: 18px;
+  padding: 5px 30px;
+  border-radius: 15px;
+}
+
+.btn-orange:hover {
+  background-color: orangered;
+}
+
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
