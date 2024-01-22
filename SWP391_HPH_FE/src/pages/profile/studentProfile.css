@@ -1,0 +1,42 @@
+.box-area{
+    width: 930px;
+}
+.right-box{
+    padding: 40px 30px 40px 40px
+}
+::placeholder{
+    font-size: 16px;
+}
+@media only screen and (max-width: 768px) {
+    .box-area{
+        margin: 0 10px;
+    }
+    .left-box{
+        height: 100px;
+        overflow: hidden;
+    }
+    .right-box{
+        padding: 20px;
+    }
+}
+.format-text{
+    color: rgb(255, 81, 0);
+}
+.login{
+    background-color: orangered;
+}
+.color-text{
+   color: orangered;
+   border: 1px solid orangered;
+   border-radius: 5px;
+}
+.font-text{
+    color: aliceblue;
+}
+
+.edit-img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+ 
