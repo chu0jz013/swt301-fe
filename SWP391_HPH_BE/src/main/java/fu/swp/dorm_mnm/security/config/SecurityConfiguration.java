@@ -46,6 +46,7 @@ public class SecurityConfiguration {
                 .cors().and()
                 .authorizeHttpRequests()
                 .requestMatchers(
+                        "/**",
                         "/health-check",
                         "/vpnpay/**",
                         "/auth/**",

@@ -16,6 +16,7 @@ public interface BedService {
     public Bed save(Bed bed);
 
     public void remove(Long id);
+    
     public BedDto updateBedOccupation(Long bedId,String rollNumber);
 
 }

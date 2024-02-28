@@ -14,6 +14,9 @@ import fu.swp.dorm_mnm.dto.base.BedDto;
 import fu.swp.dorm_mnm.exception.ResourceNotFoundException;
 import fu.swp.dorm_mnm.model.Bed;
 import fu.swp.dorm_mnm.service.base.BedService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/bed")
@@ -81,4 +84,8 @@ public class BedController {
         return new ResponseEntity<>(resp, HttpStatus.CREATED);
     }
 
+    @GetMapping("/get-all")
+    public String getAllBeds() {
+        return bedService.findAll().toString();
+    }
 }
