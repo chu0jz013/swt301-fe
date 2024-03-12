@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,26 +27,12 @@ public class findById {
   @InjectMocks
   private BedServiceImpl bedServiceImpl;
 
-  private Bed validBed;
-  private Bed invalidBed;
-  private Bed boundaryBedMin;
-  private Bed boundaryBedMax;
-  private Bed emptyBedId;
-
-  @BeforeEach
-  void setUp() {
-    validBed = new Bed().builder().bedId(1L).bedName("G505 - Bed 1").status("vacant").build();
-    invalidBed = null; // Simulate invalid bed ID not found
-    boundaryBedMin = new Bed().builder().bedId(0L).bedName("G500 - Bed 0").status("vacant").build();
-    boundaryBedMax = new Bed().builder().bedId(Long.MAX_VALUE).bedName("G999 - Bed MAX").status("occupied").build();
-    emptyBedId = null; // Simulate empty bed ID
-  }
-
   @Test
   @DisplayName("Test for valid bed ID")
   public void testValidBedId() {
     // Arrange
     Long bedId = 1L;
+    Bed validBed = new Bed().builder().bedId(1L).bedName("G505 - Bed 1").status("vacant").build();
     when(bedRepository.findById(bedId)).thenReturn(Optional.of(validBed));
 
     // Act
@@ -63,6 +48,7 @@ public class findById {
   public void testInvalidBedId() {
     // Arrange
     Long bedId = 999L; // Invalid bed ID
+    Bed invalidBed = null; // Simulate invalid bed ID not found
     when(bedRepository.findById(bedId)).thenReturn(Optional.empty());
 
     // Act
@@ -77,6 +63,7 @@ public class findById {
   public void testBoundaryBedIdMin() {
     // Arrange
     Long bedId = 0L; // Minimum bed ID
+    Bed boundaryBedMin = new Bed().builder().bedId(0L).bedName("G500 - Bed 0").status("vacant").build();
     when(bedRepository.findById(bedId)).thenReturn(Optional.of(boundaryBedMin));
 
     // Act
@@ -92,6 +79,7 @@ public class findById {
   public void testBoundaryBedIdMax() {
     // Arrange
     Long bedId = Long.MAX_VALUE; // Maximum bed ID
+    Bed boundaryBedMax = new Bed().builder().bedId(Long.MAX_VALUE).bedName("G999 - Bed MAX").status("occupied").build();
     when(bedRepository.findById(bedId)).thenReturn(Optional.of(boundaryBedMax));
 
     // Act
@@ -107,6 +95,7 @@ public class findById {
   public void testEmptyBedId() {
     // Arrange
     Long bedId = null; // Empty bed ID
+    Bed emptyBedId = null; // Simulate empty bed ID
 
     // Act
     Optional<Bed> actualBed = bedServiceImpl.findById(bedId);
