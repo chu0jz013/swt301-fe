@@ -24,6 +24,7 @@ public class BedServiceImpl implements BedService {
 
     @Autowired
     private RoomRepository roomRepository;
+    
     @Autowired
     private StudentRepository studentRepository;
 
