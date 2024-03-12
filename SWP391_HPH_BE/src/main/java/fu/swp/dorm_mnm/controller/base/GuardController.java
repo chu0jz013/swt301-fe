@@ -1,6 +1,5 @@
 package fu.swp.dorm_mnm.controller.base;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,6 @@ public class GuardController {
 
     @Autowired
     private GuardService guardService;
-
 
     @GetMapping("get-guard-by-userid/{userId}")
     @PreAuthorize("hasAuthority('guard:read')")

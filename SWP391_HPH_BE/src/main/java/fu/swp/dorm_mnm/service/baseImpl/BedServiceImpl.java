@@ -49,13 +49,13 @@ public class BedServiceImpl implements BedService {
 
     @Override
     public BedDto updateBedOccupation(Long bedId, String rollNumber) {
-        BedDto resp=new BedDto();
-        if(rollNumber==null||rollNumber.isEmpty()){
-            Bed bed=bedRepository.findById(bedId).get();
-            resp.setMessage("Student "+bed.getStudent().getRollNumber()+" have been removed from bed "+bedId);
+        BedDto resp = new BedDto();
+        if (rollNumber == null || rollNumber.isEmpty()) {
+            Bed bed = bedRepository.findById(bedId).get();
+            resp.setMessage("Student " + bed.getStudent().getRollNumber() + " have been removed from bed " + bedId);
             bed.setStudent(null);
             bed.setStatus("vacant");
-            Bed updatedBed=bedRepository.save(bed);
+            Bed updatedBed = bedRepository.save(bed);
             resp.setBedName(updatedBed.getBedName());
             resp.setId(updatedBed.getBedId());
             resp.setStatus(updatedBed.getStatus());
@@ -64,29 +64,29 @@ public class BedServiceImpl implements BedService {
             resp.setStudentId(null);
             return resp;
         }
-        boolean isRollNumberExist=studentRepository.existsByRollNumber(rollNumber);
-        if(!isRollNumberExist){
-            resp.setMessage("Student "+rollNumber+" not exists !");
+        boolean isRollNumberExist = studentRepository.existsByRollNumber(rollNumber);
+        if (!isRollNumberExist) {
+            resp.setMessage("Student " + rollNumber + " not exists !");
             return resp;
         }
-        Student st=studentRepository.findByRollNumber(rollNumber).get();
-        if (st.getBed()!=null) {
-            resp.setMessage("Student "+rollNumber+" is already in bed "+st.getBed().getBedName()+"!");
+        Student st = studentRepository.findByRollNumber(rollNumber).get();
+        if (st.getBed() != null) {
+            resp.setMessage("Student " + rollNumber + " is already in bed " + st.getBed().getBedName() + "!");
             return resp;
         }
 
-            Bed bed=bedRepository.findById(bedId).get();
-            bed.setStudent(st);
-            bed.setStatus("occupied");
-            Bed updatedBed=bedRepository.save(bed);
-            resp.setBedName(updatedBed.getBedName());
-            resp.setId(updatedBed.getBedId());
-            resp.setStatus(updatedBed.getStatus());
-            resp.setRoomId(updatedBed.getRoom().getRoomId());
-            resp.setRollNumber(rollNumber);
-            resp.setStudentId(null);
-            resp.setMessage("Student "+rollNumber+" have been assigned to bed "+bed.getBedName()+" successfully");
-            return resp;
+        Bed bed = bedRepository.findById(bedId).get();
+        bed.setStudent(st);
+        bed.setStatus("occupied");
+        Bed updatedBed = bedRepository.save(bed);
+        resp.setBedName(updatedBed.getBedName());
+        resp.setId(updatedBed.getBedId());
+        resp.setStatus(updatedBed.getStatus());
+        resp.setRoomId(updatedBed.getRoom().getRoomId());
+        resp.setRollNumber(rollNumber);
+        resp.setStudentId(null);
+        resp.setMessage("Student " + rollNumber + " have been assigned to bed " + bed.getBedName() + " successfully");
+        return resp;
 
     }
 

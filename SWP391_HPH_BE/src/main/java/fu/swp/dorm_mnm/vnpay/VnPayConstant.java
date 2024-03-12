@@ -13,7 +13,7 @@ public class VnPayConstant {
     @Value("{hash-secret}")
     public static String vnp_HashSecret;
 
-    public static String vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+    public static String vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";    
     public static String vnp_BankCode = "NCB";
 
     public static String vnp_CurrCode = "VND";
