@@ -34,9 +34,9 @@ public class findById {
 
     @BeforeEach
     void setup() {
-        validRoomType = new RoomType().builder().roomTypeId(1L).roomTypeName("3 beds").build();
+        validRoomType = new RoomType().builder().roomTypeId(2L).roomTypeName("3 beds").build();
         invalidRoomType = null;
-        boundaryMin = new RoomType().builder().roomTypeId(0L).roomTypeName("3 Beds").build();
+        boundaryMin = new RoomType().builder().roomTypeId(1L).roomTypeName("3 Beds").build();
         boundaryMax = new RoomType().builder().roomTypeId(Long.MAX_VALUE).roomTypeName("3 Beds").build();
         emptyRoomType = null;
     }
@@ -44,7 +44,7 @@ public class findById {
     @Test
     @DisplayName("Test for valid roomType")
     public void testValidRoom() {
-        Long roomId = 1L;
+        Long roomId = 2L;
         when(roomTypeRepository.findById(roomId)).thenReturn(Optional.of(validRoomType));
         Optional<RoomType> actualRoomType = roomTypeRepository.findById(roomId);
 
@@ -65,7 +65,7 @@ public class findById {
     @Test
     @DisplayName("Test for valid roomType")
     public void testBoundaryMin() {
-        Long roomId = 0L;
+        Long roomId = 1L;
         when(roomTypeRepository.findById(roomId)).thenReturn(Optional.of(boundaryMin));
         Optional<RoomType> actualRoom = roomTypeRepository.findById(roomId);
 
